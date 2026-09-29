@@ -1,0 +1,10 @@
+{
+  "name": "sgc-recordatorios-worker",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --no-warnings --test \"test/**/*.test.js\"",
+    "deploy": "wrangler deploy"
+  }
+}

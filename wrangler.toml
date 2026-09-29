@@ -1,12 +1,26 @@
 name = "sgc-recordatorios"
-main = "index.js"
-compatibility_date = "2024-01-01"
+main = "src/index.js"
+compatibility_date = "2025-10-08"
 
 [[d1_databases]]
 binding = "DB"
 database_name = "citas"
 database_id = "678b4adc-232d-43db-86ec-230828268161"
 
+# Envío diario a las 13:00 UTC (09:00-10:00 en Chile)
+[triggers]
+crons = ["0 13 * * *"]
+
 [vars]
-CRON_SECRET = "cambia-esto-por-una-clave-secreta"
+TENANT_ID = "1"
+BUSINESS_NAME = "Global Pro Automotriz"
+BUSINESS_CONTACT = "+56 9 390 26185"
+BUSINESS_WEB = "mecanico247.com"
+EVOLUTION_API_URL = "https://evolution-api-production-91a07.up.railway.app"
+EVOLUTION_INSTANCE_NAME = "make peueba"
 ULTRAMSG_INSTANCE = "instance170592"
+
+# Secrets (NO van en este archivo):
+#   wrangler secret put CRON_SECRET        # para POST /api/trigger (header X-Cron-Secret)
+#   wrangler secret put EVOLUTION_API_KEY  # envío por Evolution (recomendado)
+#   wrangler secret put ULTRAMSG_TOKEN     # solo si no se usa Evolution

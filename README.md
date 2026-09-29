@@ -219,3 +219,18 @@ sgc-recordatorios-worker/
 ## 📄 Licencia
 
 Propietario — **SGC**. Uso interno. Todos los derechos reservados.
+
+---
+
+## Correcciones (2026-09-29)
+
+- **El worker no funcionaba:** consultaba la tabla `recordatorios_revision`, que no existe; la real es
+  `sgc_rec_recordatorios_revision`. Cada registro respondía 500 y las estadísticas daban 0.
+- Código fuente en `src/index.js` (se eliminó el bundle) con tests (`npm test`).
+- Cron activado en `wrangler.toml` (`0 13 * * *`, 09:00–10:00 en Chile).
+- `CRON_SECRET` ahora es un secret (`wrangler secret put CRON_SECRET`); `/api/trigger` acepta `POST` con header
+  `X-Cron-Secret` y compara en tiempo constante.
+- Envío por **Evolution API** si `EVOLUTION_API_KEY` está configurado (mismo bridge que el bot); UltraMsg queda de respaldo.
+- Anti-abuso: `save-lead` limita por IP y envía como máximo una bienvenida por teléfono cada 24 h
+  (antes se podía usar para mandar WhatsApp a cualquier número).
+- Filtro por `tenant_id` (`TENANT_ID`, por defecto 1) y fecha de Chile con zona horaria real (antes UTC−4 fijo).
