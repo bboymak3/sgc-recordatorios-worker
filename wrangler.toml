@@ -1,0 +1,12 @@
+name = "sgc-recordatorios"
+main = "index.js"
+compatibility_date = "2024-01-01"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "citas"
+database_id = "678b4adc-232d-43db-86ec-230828268161"
+
+[vars]
+CRON_SECRET = "cambia-esto-por-una-clave-secreta"
+ULTRAMSG_INSTANCE = "instance170592"
