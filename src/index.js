@@ -106,7 +106,7 @@ export async function sendWhatsApp(env, telefono, mensaje) {
   if (phone.length < 11) return { success: false, error: "Teléfono inválido" };
   try {
     if (env.EVOLUTION_API_URL && env.EVOLUTION_API_KEY) {
-      const instance = env.EVOLUTION_INSTANCE_NAME || "make peueba";
+      const instance = env.EVOLUTION_INSTANCE_NAME || "sistema";
       const res = await fetch(`${env.EVOLUTION_API_URL}/message/sendText/${encodeURIComponent(instance)}`, {
         method: "POST",
         headers: { "apikey": env.EVOLUTION_API_KEY, "Content-Type": "application/json" },
